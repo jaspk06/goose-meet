@@ -13,13 +13,17 @@ namespace DatingApp.API
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
+            //using statement because we want to dispose of dataContext right after it has been imported
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 try
                 {
                     var context = services.GetRequiredService<DataContext>();
+                    //applies any pending migrations to database
+                    //creates database if it has not been created already
                     context.Database.Migrate();
+                    //inserts seeded users into database if it has not already
                     Seed.SeedUsers(context);
 
                 }

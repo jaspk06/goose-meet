@@ -3,6 +3,8 @@ using DatingApp.API.Models;
 
 namespace DatingApp.API.Data
 {
+    //I means interface for the AuthRepository class
+    //consists of abstract functions that must be included in class
     public interface IAuthRepository
     {
          Task<User> Login(string username, string password);

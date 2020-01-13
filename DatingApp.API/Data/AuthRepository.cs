@@ -5,8 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.API.Data
 {
+    //implements interface for AuthRepository
+    //always remember to include repositories in startup services
     public class AuthRepository : IAuthRepository
     {
+        //makes a new readonly database named _context
         private readonly DataContext _context;
         public AuthRepository(DataContext context)
         {
@@ -17,9 +20,7 @@ namespace DatingApp.API.Data
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
 
             if (user == null)
-            {
                 return null;
-            }
 
             if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
                 return null;
@@ -36,9 +37,7 @@ namespace DatingApp.API.Data
                 for (int i = 0; i < computedHash.Length; i++)
                 {
                     if (computedHash[i] != passwordHash[i])
-                    {
                         return false;
-                    }
                 }
                 return true;
             }

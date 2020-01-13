@@ -4,6 +4,8 @@ using DatingApp.API.Models;
 
 namespace DatingApp.API.Dtos
 {
+    //DTO for displaying detailed information about user
+    //does not display passwords
     public class UserForDetailedDto
     {
         public int Id { get; set; }

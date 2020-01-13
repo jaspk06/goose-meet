@@ -5,8 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.API.Data
 {
+    //implements interface for DatingRepository
     public class DatingRepository : IDatingRepository
     {
+        //makes a new readonly database named _context
         private readonly DataContext _context;
         public DatingRepository(DataContext context)
         {
@@ -24,6 +26,7 @@ namespace DatingApp.API.Data
 
         public async Task<User> GetUser(int id)
         {
+            //userID also exists in photos class so needs to be included
             var user = await _context.Users.Include(p => p.Photos).FirstOrDefaultAsync(u => u.Id == id);
 
             return user;
@@ -31,6 +34,7 @@ namespace DatingApp.API.Data
 
         public async Task<IEnumerable<User>> GetUsers()
         {
+             //User object also exists in photos class so needs to be included
             var users = await _context.Users.Include(p => p.Photos).ToListAsync();
 
             return users;

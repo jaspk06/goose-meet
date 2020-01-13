@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.API.Data
 {
+    //database consits of values, users, and photos databases
+    //DbContext is a querying method that is a part of EntityFramework
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }

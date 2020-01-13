@@ -2,6 +2,9 @@ using System;
 
 namespace DatingApp.API.Dtos
 {
+    //DTO for displaying to list on website purposes
+    //does not transfer passwords
+    //works because of how a DTO works (check UserForRegisterDto.cs)
     public class UserForListDto
     {
         public int Id { get; set; }
