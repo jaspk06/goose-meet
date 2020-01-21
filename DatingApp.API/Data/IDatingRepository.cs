@@ -13,10 +13,12 @@ namespace DatingApp.API.Data
         //T : class means that T will be a class not a common variable type like int 
         //so if it is called as Add<User> T will be of type User during compilation
         //https://www.tutorialsteacher.com/csharp/csharp-generics
-        void Add<T>(T entity) where T : class; 
+        void Add<T>(T entity) where T : class;
         void Delete<T>(T entity) where T : class;
         Task<bool> SaveAll();
         Task<IEnumerable<User>> GetUsers();
-        Task<User> GetUser(int Id);
+        Task<User> GetUser(int id);
+        Task<Photo> GetPhoto(int id);
+        Task<Photo> GetMainPhotoForUser(int id);
     }
 }

@@ -8,6 +8,7 @@
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
+            "justMyCode": false,
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/DatingApp.API/bin/Debug/netcoreapp3.0/DatingApp.API.dll",
             "args": [],
@@ -28,6 +29,11 @@
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach",
+            "justMyCode": false,
+            "symbolOptions": {
+                  "searchMicrosoftSymbolServer": true
+            },
+            "suppressJITOptimizations": true,
             "processId": "${command:pickProcess}"
         }
     ]

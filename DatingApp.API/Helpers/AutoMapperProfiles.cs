@@ -21,6 +21,8 @@ namespace DatingApp.API.Helpers
 
             CreateMap<UserForUpdateDto, User>();//reversed because writing changes from userforupdatedto to user
             CreateMap<Photo, PhotosForDetailedDto>();
+            CreateMap<Photo, PhotoForReturnDto>();
+            CreateMap<PhotoForCreationDto, Photo>();
         }
     }
 }
