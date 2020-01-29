@@ -34,10 +34,10 @@ namespace DatingApp.API.Controllers
             //filters out the variables that need to be hidden using
             //UserForListDto which is mapped using mapper
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
-            
+
             return Ok(usersToReturn);
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetUser")]
         public async Task<IActionResult> GetUser(int id)
         {
             var user = await _repo.GetUser(id);
@@ -47,7 +47,8 @@ namespace DatingApp.API.Controllers
             return Ok(userToReturn);
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto){
+        public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto)
+        {
             //check to see if the user has the correct token and is trying to do a put request on that id
             //if the id does not match the parsed id found in the token, it is unauthorized
             if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
@@ -57,7 +58,8 @@ namespace DatingApp.API.Controllers
 
             _mapper.Map(userForUpdateDto, userFromRepo);
 
-            if (await _repo.SaveAll()){
+            if (await _repo.SaveAll())
+            {
                 return NoContent();
             }
             //if cannot save to database throw exception

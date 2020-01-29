@@ -27,19 +27,18 @@ export class AuthService {
     return this.http.post(this.baseUrl + 'login', model)
       .pipe(
         map((response: any) => {
-          const user = response;
-          if (user) {
-            localStorage.setItem('token', user.token);
-            localStorage.setItem('user', JSON.stringify(user.user))
-            this.decodedToken = this.jwtHelper.decodeToken(user.token);
-            this.decodedToken = user.user;
+          if (response) {
+            localStorage.setItem('token', response.token);
+            localStorage.setItem('user', JSON.stringify(response.user));
+            this.decodedToken = this.jwtHelper.decodeToken(response.token);
+            this.currentUser = response.user;
             this.changeMemberPhoto(this.currentUser.photoUrl);
           }
         })
       );
   }
-  register(model: any) {
-    return this.http.post(this.baseUrl + 'register', model);
+  register(user: User) {
+    return this.http.post(this.baseUrl + 'register', user);
   }
   loggedin() {
     const token = localStorage.getItem('token');
